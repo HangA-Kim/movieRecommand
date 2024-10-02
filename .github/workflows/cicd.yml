@@ -22,18 +22,11 @@ jobs:
           cache: "npm"
       - run: npm ci
 
-      - name: Set up Miniconda
-        uses: conda-incubator/setup-miniconda@v3
+      # Set up Python environment
+      - name: Set up Python 3.12.6
+        uses: actions/setup-python@v4
         with:
-          miniforge-version: latest
-
-      - name: Create Conda environment
-        run: |
-          conda create --name .venv python=3.7
-          conda init
-          conda activate .venv
-          conda install -c conda-forge implicit
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          python-version: "3.11.x"
 
       # Set up Python environment
       # - name: Set up Python 3.12.6
@@ -41,17 +34,16 @@ jobs:
       #   with:
       #     python-version: "3.12.6"
 
-      # # Create and activate Python virtual environment
-      # - name: Set up Python virtual environment
-      #   run: |
-      #     python -m venv .venv
-      #     source .venv/bin/activate
+      # Create and activate Python virtual environment
+      - name: Set up Python virtual environment
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
 
-      # # Install Python dependencies (if you have a requirements.txt file)
-      # - name: Install Python dependencies
-      #   run: |
-      #     source .venv/bin/activate
-      #     if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      #     pip install --only-binary :all: implicit
+      # Install Python dependencies (if you have a requirements.txt file)
+      - name: Install Python dependencies
+        run: |
+          source .venv/bin/activate
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - run: pm2 restart BackendAPI
