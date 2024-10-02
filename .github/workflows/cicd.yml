@@ -23,13 +23,14 @@ jobs:
       - run: npm ci
 
       - name: Set up Miniconda
-        uses: conda/conda@v2
+        uses: conda-incubator/setup-miniconda@v3
         with:
-          miniconda-version: "latest"
+          auto-update-conda: true
+          python-version: "3.7"
 
       - name: Create Conda environment
         run: |
-          conda create --name .venv python=3.9
+          conda create --name .venv python=3.7
           conda activate .venv
           conda install -c conda-forge implicit
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
