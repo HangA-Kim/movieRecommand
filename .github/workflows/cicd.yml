@@ -26,6 +26,7 @@ jobs:
       - name: Set up Miniconda
         uses: conda-incubator/setup-miniconda@v2
         with:
+          miniconda-version: "latest"
           auto-activate-base: false # 기본 환경 비활성화
           python-version: "3.12.6" # 원하는 Python 버전 설정
 
