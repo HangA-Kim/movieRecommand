@@ -23,11 +23,11 @@ jobs:
       - run: npm ci
 
       # Set up Python environment
-      - name: Set up Miniconda
+      - name: Set up Miniforge
         uses: conda-incubator/setup-miniconda@v2
         with:
-          miniconda-version: "latest"
-          auto-activate-base: false # 기본 환경 비활성화
+          miniforge-version: "latest" # Miniforge 설치
+          auto-activate-base: false
           python-version: "3.12.6" # 원하는 Python 버전 설정
 
       # Create and activate Python virtual environment
