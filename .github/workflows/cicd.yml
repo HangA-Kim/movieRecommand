@@ -31,6 +31,7 @@ jobs:
       - name: Create Conda environment
         run: |
           conda create --name .venv python=3.7
+          conda init
           conda activate .venv
           conda install -c conda-forge implicit
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
