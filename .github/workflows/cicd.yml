@@ -25,7 +25,7 @@ jobs:
       - name: Set up Miniconda
         uses: conda-incubator/setup-miniconda@v3
         with:
-          auto-update-conda: true
+          miniforge-version: latest
           python-version: "3.7"
 
       - name: Create Conda environment
