@@ -21,29 +21,26 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
       - run: npm ci
-
-      # 디스크 공간 확보를 위한 캐시 삭제
-      - name: Free up disk space
-        run: sudo apt-get clean
+      - run: |
+          touch .env
+          echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
 
       # Set up Python environment
-      - name: Set up Miniforge
-        uses: conda-incubator/setup-miniconda@v2
+      - name: Set up Python 3.12.6
+        uses: actions/setup-python@v4
         with:
-          miniforge-version: "latest" # Miniforge 설치
-          auto-activate-base: false
-          python-version: "3.12.6" # 원하는 Python 버전 설정
+          python-version: "3.12.6"
 
       # Create and activate Python virtual environment
       - name: Set up Python virtual environment
         run: |
-          conda create --name conda --yes python=3.12.6 
-          source activate conda
+          python -m venv .venv
+          source .venv/bin/activate
 
       # Install Python dependencies (if you have a requirements.txt file)
       - name: Install Python dependencies
         run: |
-          source conda/bin/activate
+          source chat/bin/activate
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - run: pm2 restart BackendAPI

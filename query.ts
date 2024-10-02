@@ -9,9 +9,13 @@ const isDevelopment = (): boolean => {
   return process.env.NODE_ENV === "development";
 };
 
+// const pythonExePath = isDevelopment()
+//   ? path.join(__dirname, ".conda", "python.exe")
+//   : path.join(__dirname, ".conda", "python3");
+
 const pythonExePath = isDevelopment()
   ? path.join(__dirname, ".conda", "python.exe")
-  : path.join(__dirname, ".conda", "python3");
+  : path.join(__dirname, ".venv", "bin", "python3");
 
 function queryMovies(res: Response, result: ChildProcessWithoutNullStreams) {
   let responseData = "";
