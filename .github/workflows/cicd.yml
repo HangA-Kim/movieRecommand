@@ -22,6 +22,10 @@ jobs:
           cache: "npm"
       - run: npm ci
 
+      # 디스크 공간 확보를 위한 캐시 삭제
+      - name: Free up disk space
+        run: sudo apt-get clean
+
       # Set up Python environment
       - name: Set up Miniforge
         uses: conda-incubator/setup-miniconda@v2
