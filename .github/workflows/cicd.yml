@@ -23,10 +23,11 @@ jobs:
       - run: npm ci
 
       # Set up Python environment
-      - name: Set up Python 3.12.6
-        uses: actions/setup-python@v4
+      - name: Set up Miniconda
+        uses: conda-incubator/setup-miniconda@v2
         with:
-          python-version: "3.12.6"
+          auto-activate-base: false # 기본 환경 비활성화
+          python-version: "3.12.6" # 원하는 Python 버전 설정
 
       # Create and activate Python virtual environment
       - name: Set up Python virtual environment
@@ -38,6 +39,6 @@ jobs:
       - name: Install Python dependencies
         run: |
           source conda/bin/activate
-          if [ -f chat/requirements.txt ]; then pip install -r chat/requirements.txt; fi
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - run: pm2 restart BackendAPI
