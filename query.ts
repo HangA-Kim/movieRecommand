@@ -66,3 +66,12 @@ export const getItemBased = (res: Response, ...args: string[]) => {
   const result = spawn(pythonExePath, [scriptPath, ...args]);
   queryMovies(res, result);
 };
+
+export const getUseBased = (res: Response, ...args: string[]) => {
+  const scriptPath = path.join(__dirname, "recommender.py");
+  const result = spawn(pythonExePath, [scriptPath, ...args]);
+  // 파이썬 스크립트로 JSON 데이터를 전달
+  result.stdin.write(JSON.stringify(args[1]));
+  result.stdin.end();
+  queryMovies(res, result);
+};

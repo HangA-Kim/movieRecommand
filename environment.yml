@@ -1,9 +1,11 @@
-name: conda
+name: venv
 channels:
-  - defaults
+  - conda-forge
 dependencies:
-  - python>=3.12.6
-  - pandas
-  - scikit-learn
-  - scipy
-  - implicit
+  - python
+  - implicit # conda-forge에서 설치할 패키지
+  - pip # pip 설치 추가
+  - pip:
+      - pandas # pip로 설치할 패키지
+      - scikit-learn
+      - scipy

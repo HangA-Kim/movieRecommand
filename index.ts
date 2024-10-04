@@ -1,6 +1,6 @@
 import express, { type Express } from "express";
 import cors from "cors";
-import { getMovies, getItemBased } from "./query";
+import { getMovies, getItemBased, getUseBased } from "./query";
 
 // console.log(path.join(__dirname)); // 루트 경로. 배포때와 개발때의 경로가 달라서
 
@@ -32,6 +32,10 @@ app.get("/genres/:genre/:count", (req, res) => {
 
 app.get("/item-based/:item", (req, res) => {
   getItemBased(res, "item-based", req.params.item);
+});
+
+app.post("/user-based", (req, res) => {
+  getUseBased(res, "user-based", req.body);
 });
 
 app
