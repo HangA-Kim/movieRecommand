@@ -1,0 +1,9 @@
+name: conda
+channels:
+  - defaults
+dependencies:
+  - python>=3.12.6
+  - pandas
+  - scikit-learn
+  - scipy
+  - implicit

@@ -15,7 +15,15 @@ const isDevelopment = (): boolean => {
 
 const pythonExePath = isDevelopment()
   ? path.join(__dirname, ".conda", "python.exe")
-  : path.join(__dirname, ".venv", "bin", "python3");
+  : path.join(__dirname, "venv", "bin", "python3");
+
+// const pythonExePath = path.join(
+//   '/home/ubuntu/miniconda',
+//   'envs',
+//   'myenv',
+//   'bin',
+//   'python3'
+// );
 
 function queryMovies(res: Response, result: ChildProcessWithoutNullStreams) {
   let responseData = "";
